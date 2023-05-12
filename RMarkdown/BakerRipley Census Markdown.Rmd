@@ -1,0 +1,526 @@
+---
+title: "Mapping BakerRipley Census Data"
+author: "Emma Li"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Let's visualize the census data five main neighborhoods that the Houston-based nonprofit BakerRipley provides services for: East End, East Aldine, Gulfton/Sharpstown, Hobby/Harbach, and Pasadena. These maps use the most recently published American Community Survey (ACS) data released by the U.S. Census Bureau, which show data for 2021.
+
+First, let's look at the median household income of each census tract within these neighborhoods. Each neighborhood is associated with a color in the legend. Mouse over each census tract to see which neighborhood it's located in, and click on it to see the estimated median household income in dollars (labeled 'estimate') as well as other key information about that census tract:
+
+```{r echo=FALSE, message = FALSE, warning=FALSE}
+
+setwd("~/Desktop/Community_Bridges/BakerRipley/Census_Data_Mapping")
+
+library(dplyr)
+library(tidycensus)
+library(tidyverse)
+library(mapview)
+library(sf)
+
+# Use cache for mapping
+options(tigris_use_cache = TRUE)
+
+# Load unique US Census API key (request here if needed: https://api.census.gov/data/key_signup.html ).
+# Note: Setting install = TRUE will save the key for all future uses.
+# census_api_key("47923ba1e02501406dc71b4ded6fed44e70c6b04", install = TRUE)
+# census_api_key("<insert API key here>", install = TRUE)
+
+### Read in BakerRipley tract list and neighborhood names ###
+BR_tracts = read.csv("TractList_BR_All.csv")
+
+# Include only relevant columns
+# Get all census tracts
+BR_tracts = subset(BR_tracts, select=c("Neighborhood", "GEOID", "Tract", "Tractce"))
+
+# Load in the ACS Variables for BakerRipley Neighborhoods
+BR_VARS_ALL_2021 = read.csv("BR_VARS_ALL_2021.csv")
+
+### Read in the desired Census Data Variables ###
+ACS_Vars_21_With_BR = read.csv("ACSVariables2021CondensedModVars.csv")
+
+ACS_Vars_21 = subset(ACS_Vars_21_With_BR, ACS_Label != 'BakerRipley Calculation')
+
+# Create a dataframe for the county ACS data at census-tract level, showing the corresponding geometries
+ACS_Harris_2021 = get_acs(
+  geography = "tract", #Display tract-level geographies
+  state = "TX", #Select state
+  county = "Harris County", #Select county
+  variables = 'DP03_0062', # Show read in desired variables
+  geometry = TRUE, #Show geometric information
+  year = 2021 #Desired end year for 5-yr ACS range
+)
+
+# Merge with tract names
+ACS_BR_2021 = merge(x = BR_tracts, y = ACS_Harris_2021, by.x = "GEOID", by.y = "GEOID")
+
+# Merge with variable descriptions
+ACS_BR_2021 = merge(x = ACS_Vars_21, y = ACS_BR_2021, by.x = "Var_2021", by.y = "variable")
+
+# Convert merged data to dataframe
+ACS_BR_2021 = data.frame(ACS_BR_2021)
+
+ACS_BR_2021 = unique(ACS_BR_2021)
+
+
+# Make a dataframe with geo info (tract, GEOID, geometry), then merge with calculations after
+ACS_GEO_INFO = subset(ACS_BR_2021, select=c(GEOID, Neighborhood, Tract, geometry))
+ACS_GEO_INFO = unique(ACS_GEO_INFO)
+
+# Merge GEO INFO with BR Variables
+BR_VARS_ALL_2021_GEO = merge(x = BR_VARS_ALL_2021, y = ACS_GEO_INFO, by.x = "Tract", by.y = "Tract")
+
+ACS_BR_2021_Med_Inc = subset(BR_VARS_ALL_2021_GEO, Var_2021 == 'DP03_0062')
+
+st_geometry(ACS_BR_2021_Med_Inc) = "geometry"
+
+mapview(ACS_BR_2021_Med_Inc, zcol = "Neighborhood.x")
+```
+
+Now, let's focus on the median household income of a single neighborhood: Pasadena.
+
+Since we are now focusing on just Pasadena, we can use the colors to create a choropleth mapping of the estimated median household income for each census tract, and when you mouse over each tract you can see the estimated median income:
+
+```{r echo=FALSE, message = FALSE, warning=FALSE}
+
+setwd("~/Desktop/Community_Bridges/BakerRipley/Census_Data_Mapping")
+
+library(dplyr)
+library(tidycensus)
+library(tidyverse)
+library(mapview)
+library(sf)
+
+# Use cache for mapping
+options(tigris_use_cache = TRUE)
+
+# Load unique US Census API key (request here if needed: https://api.census.gov/data/key_signup.html ).
+# Note: Setting install = TRUE will save the key for all future uses.
+# census_api_key("47923ba1e02501406dc71b4ded6fed44e70c6b04", install = TRUE)
+# census_api_key("<insert API key here>", install = TRUE)
+
+### Read in BakerRipley tract list and neighborhood names ###
+BR_tracts = read.csv("TractList_BR_All.csv")
+
+# Include only relevant columns
+# Get all census tracts
+BR_tracts = subset(BR_tracts, select=c("Neighborhood", "GEOID", "Tract", "Tractce"))
+
+# Load in the ACS Variables for BakerRipley Neighborhoods
+BR_VARS_ALL_2021 = read.csv("BR_VARS_ALL_2021.csv")
+
+### Read in the desired Census Data Variables ###
+ACS_Vars_21_With_BR = read.csv("ACSVariables2021CondensedModVars.csv")
+
+ACS_Vars_21 = subset(ACS_Vars_21_With_BR, ACS_Label != 'BakerRipley Calculation')
+
+# Create a dataframe for the county ACS data at census-tract level, showing the corresponding geometries
+ACS_Harris_2021 = get_acs(
+  geography = "tract", #Display tract-level geographies
+  state = "TX", #Select state
+  county = "Harris County", #Select county
+  variables = 'DP03_0062', # Show read in desired variables
+  geometry = TRUE, #Show geometric information
+  year = 2021 #Desired end year for 5-yr ACS range
+)
+
+# Merge with tract names
+ACS_BR_2021 = merge(x = BR_tracts, y = ACS_Harris_2021, by.x = "GEOID", by.y = "GEOID")
+
+# Merge with variable descriptions
+ACS_BR_2021 = merge(x = ACS_Vars_21, y = ACS_BR_2021, by.x = "Var_2021", by.y = "variable")
+
+# Convert merged data to dataframe
+ACS_BR_2021 = data.frame(ACS_BR_2021)
+
+ACS_BR_2021 = unique(ACS_BR_2021)
+
+
+# Make a dataframe with geo info (tract, GEOID, geometry), then merge with calculations after
+ACS_GEO_INFO = subset(ACS_BR_2021, select=c(GEOID, Neighborhood, Tract, geometry))
+ACS_GEO_INFO = unique(ACS_GEO_INFO)
+
+# Merge GEO INFO with BR Variables
+BR_VARS_ALL_2021_GEO = merge(x = BR_VARS_ALL_2021, y = ACS_GEO_INFO, by.x = "Tract", by.y = "Tract")
+
+ACS_BR_2021_Med_Inc = subset(BR_VARS_ALL_2021_GEO, Var_2021 == 'DP03_0062')
+
+ACS_BR_PAS_2021_Med_Inc = subset(ACS_BR_2021_Med_Inc, Neighborhood.x == "Pasadena")
+
+st_geometry(ACS_BR_PAS_2021_Med_Inc) = "geometry"
+
+mapview(ACS_BR_PAS_2021_Med_Inc, zcol = "estimate")
+
+```
+
+There are many other census variables we can look at besides median household income. One area of particular interest to Houston is its relatively high rates of population growth over the past few years. 
+
+Let's examine the population of each race for the four most recently published years of census data (2018-2021), comparing two neighborhoods, Gulfton/Sharpton and East End:
+
+```{r, fig.show='hold', out.width='50%', echo=FALSE, message = FALSE, warning=FALSE}
+
+setwd("~/Desktop/Community_Bridges/BakerRipley/Census_Data_Mapping")
+
+library(tidyverse)
+library(ggplot2)
+
+gulfton_2018_2021_pop_race = read.csv("gulfton_2018_2021_pop_race.csv")
+
+east_end_2018_2021_pop_race = read.csv("east_end_2018_2021_pop_race.csv")
+
+ggplot(gulfton_2018_2021_pop_race) + 
+  geom_line(mapping = aes(x = Year, y = Population, 
+                          group = Race, 
+                          color = Race))+
+  ggtitle("Gulfton/Sharptown: Population of Each Race, 2018-2021")+
+  labs(y= "Population", x = "Year")
+
+ggplot(east_end_2018_2021_pop_race) + 
+  geom_line(mapping = aes(x = Year, y = Population, 
+                          group = Race, 
+                          color = Race))+
+  ggtitle("East End: Population of Each Race, 2018-2021")+
+  labs(y= "Population", x = "Year")
+
+```
+
+
+We can also break this down by the percent of population growth by race, to get a more direct comparison. The bar graphs below show the total percentage change in population by race from 2018 to 2021. The percentage comes from the percent of the total neighborhood population that identifies as that particular race:
+
+```{r, fig.show='hold', out.width='50%', echo=FALSE, message = FALSE, warning=FALSE}
+
+setwd("~/Desktop/Community_Bridges/BakerRipley/Census_Data_Mapping")
+
+library(ggplot2)
+
+# Read in data
+east_end_pop_race = read.csv("east_end_2018_2021_pop_race.csv")
+gulfton_pop_race = read.csv("gulfton_2018_2021_pop_race.csv")
+
+# Get the total population of each year
+east_end_2018_total_pop = sum(subset(east_end_pop_race, Year == 2018)$Population)
+
+east_end_2019_total_pop = sum(subset(east_end_pop_race, Year == 2019)$Population)
+
+east_end_2020_total_pop = sum(subset(east_end_pop_race, Year == 2020)$Population)
+
+east_end_2021_total_pop = sum(subset(east_end_pop_race, Year == 2021)$Population)
+
+east_end_pop_race$Total_Population = NA
+
+# Set the total population as its own column
+east_end_pop_race$Total_Population[east_end_pop_race$Year==2018] = east_end_2018_total_pop
+
+east_end_pop_race$Total_Population[east_end_pop_race$Year==2019] = east_end_2019_total_pop
+
+east_end_pop_race$Total_Population[east_end_pop_race$Year==2020] = east_end_2020_total_pop
+
+east_end_pop_race$Total_Population[east_end_pop_race$Year==2021] = east_end_2021_total_pop
+
+
+# Set percent of population
+
+east_end_pop_race$Percent_Of_Pop = east_end_pop_race$Population / east_end_pop_race$Total_Population
+
+east_end_pop_race$Percent_Of_Pop = round(east_end_pop_race$Percent_Of_Pop, 2) * 100
+
+
+# Make column of % changes
+east_end_pop_race$Pop_Growth = NA
+
+for (race in east_end_pop_race$Race){
+  
+  perc_2021 = east_end_pop_race[east_end_pop_race$Race == race
+                                &east_end_pop_race$Year == 
+                                  '2021',]$Percent_Of_Pop
+  
+  perc_2018 = east_end_pop_race[east_end_pop_race$Race == race
+                                &east_end_pop_race$Year == 
+                                  '2018',]$Percent_Of_Pop
+  
+  perc_change  = perc_2021 - perc_2018
+  
+  east_end_pop_race[east_end_pop_race$Race == race,]$Pop_Growth = perc_change
+    
+  
+}
+
+
+east_end_pop_race$Pop_Growth_Dummy = NA
+
+east_end_pop_race$Pop_Growth_Dummy[east_end_pop_race$Pop_Growth <= 0] = "Negative or No Growth" # No growth or negative growth is 0
+east_end_pop_race$Pop_Growth_Dummy[east_end_pop_race$Pop_Growth > 0] = "Positive Growth" # Positive growth is a 1
+
+east_end_pop_growth = subset(east_end_pop_race, select=c(Race, Pop_Growth, Pop_Growth_Dummy))
+east_end_pop_growth = unique(east_end_pop_growth)
+
+east_end_pop_growth$Pop_Growth_Dummy = factor(east_end_pop_growth$Pop_Growth_Dummy)
+
+### Gulfton Analysis ###
+# Get the total population of each year
+gulfton_2018_total_pop = sum(subset(gulfton_pop_race, Year == 2018)$Population)
+
+gulfton_2019_total_pop = sum(subset(gulfton_pop_race, Year == 2019)$Population)
+
+gulfton_2020_total_pop = sum(subset(gulfton_pop_race, Year == 2020)$Population)
+
+gulfton_2021_total_pop = sum(subset(gulfton_pop_race, Year == 2021)$Population)
+
+gulfton_pop_race$Total_Population = NA
+
+# Set the total population as its own column
+gulfton_pop_race$Total_Population[gulfton_pop_race$Year==2018] = gulfton_2018_total_pop
+
+gulfton_pop_race$Total_Population[gulfton_pop_race$Year==2019] = gulfton_2019_total_pop
+
+gulfton_pop_race$Total_Population[gulfton_pop_race$Year==2020] = gulfton_2020_total_pop
+
+gulfton_pop_race$Total_Population[gulfton_pop_race$Year==2021] = gulfton_2021_total_pop
+
+
+# Set percent of pop
+gulfton_pop_race$Percent_Of_Pop = gulfton_pop_race$Population / gulfton_pop_race$Total_Population
+
+gulfton_pop_race$Percent_Of_Pop = round(gulfton_pop_race$Percent_Of_Pop, 2) * 100
+
+
+# Make column of % changes
+gulfton_pop_race$Pop_Growth = NA
+
+for (race in gulfton_pop_race$Race){
+  
+  perc_2021 = gulfton_pop_race[gulfton_pop_race$Race == race
+                                &gulfton_pop_race$Year == 
+                                  '2021',]$Percent_Of_Pop
+  
+  perc_2018 = gulfton_pop_race[gulfton_pop_race$Race == race
+                                &gulfton_pop_race$Year == 
+                                  '2018',]$Percent_Of_Pop
+  
+  perc_change  = perc_2021 - perc_2018
+  
+  gulfton_pop_race[gulfton_pop_race$Race == race,]$Pop_Growth = perc_change
+  
+  
+}
+
+
+gulfton_pop_race$Pop_Growth_Dummy = NA
+
+gulfton_pop_race$Pop_Growth_Dummy[gulfton_pop_race$Pop_Growth <= 0] = "Negative or No Growth" # No growth or negative growth is 0
+gulfton_pop_race$Pop_Growth_Dummy[gulfton_pop_race$Pop_Growth > 0] = "Positive Growth" # Positive growth is a 1
+
+
+gulfton_pop_growth = subset(gulfton_pop_race, select=c(Race, Pop_Growth, Pop_Growth_Dummy))
+gulfton_pop_growth = unique(gulfton_pop_growth)
+
+gulfton_pop_growth$Pop_Growth_Dummy = factor(gulfton_pop_growth$Pop_Growth_Dummy)
+
+
+# Plots
+ggplot(east_end_pop_growth, mapping=aes(fill=Pop_Growth_Dummy, x=Race, y=Pop_Growth)) +
+  geom_bar(position="stack", stat="identity") + 
+  labs(x = "Race", y= "% Population Growth from 2018-2021", fill="Growth")+
+  coord_flip()+
+  ggtitle("East End Percent Population Growth\n 2018-2021 by Race")+
+  scale_fill_manual(values=c("red","green"))
+
+ggplot(gulfton_pop_growth, mapping=aes(fill=Pop_Growth_Dummy, x=Race, y=Pop_Growth)) +
+  geom_bar(position="stack", stat="identity") + 
+  labs(x = "Race", y= "% Population Growth from 2018-2021", fill="Growth")+
+  coord_flip()+
+  ggtitle("Gulfton Percent Population Growth\n 2018-2021 by Race")+
+  scale_fill_manual(values=c("red","green"))
+
+
+```
+
+Since the overall population growth rate of Gulfton/Sharptown seems to be greater than that of East End, 
+especially between the years of 2019-2020, let's now examine the percent of households in Gulfton/Sharptown that moved in after 2017. When you mouse over each census tract, you can see the percentage of households in that census tract that moved in after 2017:
+
+```{r echo=FALSE, message = FALSE, warning=FALSE}
+
+### Set working directory ###
+setwd("~/Desktop/Community_Bridges/BakerRipley/Census_Data_Mapping")
+# setwd("<insert path to your desired directory>")
+
+### Set up necessary libraries ###
+# Install packages first if not already installed
+# install.packages(dplyr)
+# install.packages(tidycensus)
+# install.packages(tidyverse)
+# install.packages(mapview)
+
+library(dplyr)
+library(tidycensus)
+library(tidyverse)
+library(mapview)
+library(sf)
+
+# Use cache for mapping
+options(tigris_use_cache = TRUE)
+
+# Load unique US Census API key (request here if needed: https://api.census.gov/data/key_signup.html ).
+# Note: Setting install = TRUE will save the key for all future uses.
+# census_api_key("47923ba1e02501406dc71b4ded6fed44e70c6b04", install = TRUE)
+# census_api_key("<insert API key here>", install = TRUE)
+
+### Read in BakerRipley tract list and neighborhood names ###
+BR_tracts = read.csv("TractList_BR_All.csv")
+
+# Include only relevant columns
+# Get all census tracts
+BR_tracts = subset(BR_tracts, select=c("Neighborhood", "GEOID", "Tract", "Tractce"))
+
+# Load in the ACS Variables for BakerRipley Neighborhoods
+BR_VARS_ALL_2021 = read.csv("BR_VARS_ALL_2021.csv")
+
+### Read in the desired Census Data Variables ###
+ACS_Vars_21_With_BR = read.csv("ACSVariables2021CondensedModVars.csv")
+
+ACS_Vars_21 = subset(ACS_Vars_21_With_BR, ACS_Label != 'BakerRipley Calculation')
+
+# Create a dataframe for the county ACS data at census-tract level, showing the corresponding geometries
+ACS_Harris_2021 = get_acs(
+  geography = "tract", #Display tract-level geographies
+  state = "TX", #Select state
+  county = "Harris County", #Select county
+  variables = 'DP04_0051', # Show read in desired variables
+  geometry = TRUE, #Show geometric information
+  year = 2021 #Desired end year for 5-yr ACS range
+)
+
+# Merge with tract names
+ACS_BR_2021 = merge(x = BR_tracts, y = ACS_Harris_2021, by.x = "GEOID", by.y = "GEOID")
+
+# Merge with variable descriptions
+ACS_BR_2021 = merge(x = ACS_Vars_21, y = ACS_BR_2021, by.x = "Var_2021", by.y = "variable")
+
+# Convert merged data to dataframe
+ACS_BR_2021 = data.frame(ACS_BR_2021)
+
+ACS_BR_2021 = unique(ACS_BR_2021)
+
+
+# Make a dataframe with geo info (tract, GEOID, geometry), then merge with calculations after
+ACS_GEO_INFO = subset(ACS_BR_2021, select=c(GEOID, Neighborhood, Tract, geometry))
+ACS_GEO_INFO = unique(ACS_GEO_INFO)
+
+# Merge GEO INFO with BR Variables
+BR_VARS_ALL_2021_GEO = merge(x = BR_VARS_ALL_2021, y = ACS_GEO_INFO, by.x = "Tract", by.y = "Tract")
+
+ACS_BR_2021_MovedIn_After2017 = subset(BR_VARS_ALL_2021_GEO, Var_2021 == 'DP04_0051')
+
+Gulf_2021_After2017 = subset(ACS_BR_2021_MovedIn_After2017, Neighborhood.x == 'Gulfton/Sharpstown')
+
+st_geometry(Gulf_2021_After2017) = "geometry"
+
+mapview(Gulf_2021_After2017, zcol = "Percent_Of_Population")
+
+```
+
+There seems to be a trend of a greater percentage of residents in the census tracts to the west side of Gulfton/Sharpstown having moved in after 2017. Let's now look at all of the percentage of residents in all census tracts Harris County that moved in after 2017, to see if there are any larger patterns across the county:
+
+```{r echo=FALSE, message = FALSE, warning=FALSE}
+
+### Set working directory ###
+setwd("~/Desktop/Community_Bridges/BakerRipley/Census_Data_Mapping")
+# setwd("<insert path to your desired directory>")
+
+### Set up necessary libraries ###
+# Install packages first if not already installed
+# install.packages(dplyr)
+# install.packages(tidycensus)
+# install.packages(tidyverse)
+# install.packages(mapview)
+
+library(dplyr)
+library(tidycensus)
+library(tidyverse)
+library(mapview)
+library(sf)
+
+# Use cache for mapping
+options(tigris_use_cache = TRUE)
+
+# Load unique US Census API key (request here if needed: https://api.census.gov/data/key_signup.html ).
+# Note: Setting install = TRUE will save the key for all future uses.
+# census_api_key("47923ba1e02501406dc71b4ded6fed44e70c6b04", install = TRUE)
+# census_api_key("<insert API key here>", install = TRUE)
+
+# Load in the ACS Variables for BakerRipley Neighborhoods
+BR_VARS_ALL_2021 = read.csv("BR_VARS_ALL_2021.csv")
+
+### Read in the desired Census Data Variables ###
+ACS_Vars_21_With_BR = read.csv("ACSVariables2021CondensedModVars.csv")
+
+ACS_Vars_21 = subset(ACS_Vars_21_With_BR, ACS_Label != 'BakerRipley Calculation')
+
+# Create a dataframe for the county ACS data at census-tract level, showing the corresponding geometries
+ACS_Harris_Housing_2021 = get_acs(
+  geography = "tract", #Display tract-level geographies
+  state = "TX", #Select state
+  county = "Harris County", #Select county
+  variables = c('DP04_0050',
+                'DP04_0051'), # Show read in desired variables
+  geometry = TRUE, #Show geometric information
+  year = 2021 #Desired end year for 5-yr ACS range
+)
+
+
+# Merge with variable descriptions
+ACS_Harris_Housing_2021 = merge(x = ACS_Vars_21, y = ACS_Harris_Housing_2021, by.x = "Var_2021", by.y = "variable")
+
+# Convert merged data to dataframe
+ACS_Harris_Housing_2021 = data.frame(ACS_Harris_Housing_2021)
+
+ACS_Harris_Housing_2021 = unique(ACS_Harris_Housing_2021)
+
+### Category: Housing Tenure ###
+
+# Create % of Population Column
+ACS_Harris_Housing_2021['Percent_Of_Population'] = NA
+
+# Create Total Population Column (initially NA)
+ACS_Harris_Housing_2021['Total_Population'] = NA
+
+UNIQUE_GEOIDS = unique(ACS_Harris_Housing_2021$GEOID)
+UNIQUE_GEOIDS = data.frame(UNIQUE_GEOIDS)
+
+### Set the total population for each tract ###
+for (GEO_ID in ACS_Harris_Housing_2021$GEOID){
+  
+  ACS_Harris_Housing_2021[ACS_Harris_Housing_2021$GEOID == GEO_ID,]$Total_Population = 
+    ACS_Harris_Housing_2021[ACS_Harris_Housing_2021$GEOID == GEO_ID
+                          &ACS_Harris_Housing_2021$Variable_Name == 
+                            'Total Occupied housing units',]$estimate
+  
+}
+
+
+### Get the percentages ###
+ACS_Harris_Housing_2021$Percent_Of_Population = ACS_Harris_Housing_2021$estimate /
+  ACS_Harris_Housing_2021$Total_Population
+
+### Round + multiply percent by 100 ###
+
+ACS_Harris_Housing_2021$Percent_Of_Population = 
+  round(ACS_Harris_Housing_2021$Percent_Of_Population * 100, 2)
+
+
+Harris_After_2017 = subset(ACS_Harris_Housing_2021, Var_2021 == 'DP04_0051')
+
+Harris_After_2017 = subset(ACS_Harris_Housing_2021, select = -c(ACS_Label))
+
+
+st_geometry(Harris_After_2017) = "geometry"
+
+mapview(Harris_After_2017, zcol = "Percent_Of_Population")
+```
+
+
+

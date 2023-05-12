@@ -1,0 +1,139 @@
+ACS_Label,Demographic_Category,Variable_Name,Var_2021
+Estimate!!SEX AND AGE!!Total population,Total Population,Total Population: General,DP05_0001
+Estimate!!SEX AND AGE!!Total population!!Under 5 years,Age,Under 5 years,DP05_0005
+Estimate!!SEX AND AGE!!Total population!!5 to 9 years,Age,5 to 9 years,DP05_0006
+Estimate!!SEX AND AGE!!Total population!!10 to 14 years,Age,10 to 14 years,DP05_0007
+Estimate!!SEX AND AGE!!Total population!!15 to 19 years,Age,15 to 19 years,DP05_0008
+Estimate!!SEX AND AGE!!Total population!!20 to 24 years,Age,20 to 24 years,DP05_0009
+Estimate!!SEX AND AGE!!Total population!!25 to 34 years,Age,25 to 34 years,DP05_0010
+Estimate!!SEX AND AGE!!Total population!!35 to 44 years,Age,35 to 44 years,DP05_0011
+Estimate!!SEX AND AGE!!Total population!!45 to 54 years,Age,45 to 54 years,DP05_0012
+Estimate!!SEX AND AGE!!Total population!!55 to 59 years,Age,55 to 59 years,DP05_0013
+Estimate!!SEX AND AGE!!Total population!!60 to 64 years,Age,60 to 64 years,DP05_0014
+Estimate!!SEX AND AGE!!Total population!!65 to 74 years,Age,65 to 74 years,DP05_0015
+Estimate!!SEX AND AGE!!Total population!!75 to 84 years,Age,75 to 84 years,DP05_0016
+Estimate!!SEX AND AGE!!Total population!!85 years and over,Age,85 years and over,DP05_0017
+BakerRipley Calculation,Age,Working Age Population (20-59 years old),
+Estimate!!SEX AND AGE!!Total population!!Male,Gender,Male,DP05_0002
+Estimate!!SEX AND AGE!!Total population!!Female,Gender,Female,DP05_0003
+Estimate!!HISPANIC OR LATINO AND RACE!!Total population!!Hispanic or Latino (of any race),Race / Ethnicity,Hispanic or Latino (of any race),DP05_0071
+Estimate!!HISPANIC OR LATINO AND RACE!!Total population!!Not Hispanic or Latino!!White alone,Race / Ethnicity,White alone,DP05_0077
+Estimate!!HISPANIC OR LATINO AND RACE!!Total population!!Not Hispanic or Latino!!Black or African American alone,Race / Ethnicity,Black or African American alone,DP05_0078
+Estimate!!HISPANIC OR LATINO AND RACE!!Total population!!Not Hispanic or Latino!!American Indian and Alaska Native alone,Race / Ethnicity,American Indian and Alaska Native alone,DP05_0079
+Percent!!HISPANIC OR LATINO AND RACE!!Total population!!Not Hispanic or Latino!!Asian alone,Race / Ethnicity,Asian alone,DP05_0080
+Estimate!!HISPANIC OR LATINO AND RACE!!Total population!!Not Hispanic or Latino!!Native Hawaiian and Other Pacific Islander alone,Race / Ethnicity,Native Hawaiian and Other Pacific Islander,DP05_0081
+Percent!!HISPANIC OR LATINO AND RACE!!Total population!!Not Hispanic or Latino!!Some other race alone,Race / Ethnicity,Some other race alone,DP05_0082
+Percent!!HISPANIC OR LATINO AND RACE!!Total population!!Not Hispanic or Latino!!Two or more races,Race / Ethnicity,Two or more races,DP05_0083
+Estimate!!INCOME AND BENEFITS (IN 2020 INFLATION-ADJUSTED DOLLARS)!!Total households!!Median household income (dollars),Household Income and Benefits,Median household income ($),DP03_0062
+Estimate!!INCOME AND BENEFITS (IN 2020 INFLATION-ADJUSTED DOLLARS)!!Total households,Household Income and Benefits,Total households,DP03_0051
+"Estimate!!INCOME AND BENEFITS (IN 2020 INFLATION-ADJUSTED DOLLARS)!!Total households!!Less than $10,000",Household Income and Benefits,"Less than $10,000",DP03_0052
+"Estimate!!INCOME AND BENEFITS (IN 2020 INFLATION-ADJUSTED DOLLARS)!!Total households!!$10,000 to $14,999",Household Income and Benefits,"$10,000 to $14,999",DP03_0053
+"Estimate!!INCOME AND BENEFITS (IN 2020 INFLATION-ADJUSTED DOLLARS)!!Total households!!$15,000 to $24,999",Household Income and Benefits,"$15,000 to $24,999",DP03_0054
+BakerRipley Calculation,Household Income and Benefits,"Subtotal less than $25,000 income",
+"Estimate!!INCOME AND BENEFITS (IN 2020 INFLATION-ADJUSTED DOLLARS)!!Total households!!$25,000 to $34,999",Household Income and Benefits,"$25,000 to $34,999",DP03_0055
+"Estimate!!INCOME AND BENEFITS (IN 2020 INFLATION-ADJUSTED DOLLARS)!!Total households!!$35,000 to $49,999",Household Income and Benefits,"$35,000 to $49,999",DP03_0056
+BakerRipley Calculation,Household Income and Benefits,"Subtotal less than $50,000 income",
+"Estimate!!INCOME AND BENEFITS (IN 2020 INFLATION-ADJUSTED DOLLARS)!!Total households!!$50,000 to $74,999",Household Income and Benefits,"$50,000 to $74,999",DP03_0057
+"Estimate!!INCOME AND BENEFITS (IN 2020 INFLATION-ADJUSTED DOLLARS)!!Total households!!$75,000 to $99,999",Household Income and Benefits,"$75,000 to $99,999",DP03_0058
+"Estimate!!INCOME AND BENEFITS (IN 2020 INFLATION-ADJUSTED DOLLARS)!!Total households!!$100,000 to $149,999",Household Income and Benefits," $100,000 to $149,999",DP03_0059
+"Estimate!!INCOME AND BENEFITS (IN 2020 INFLATION-ADJUSTED DOLLARS)!!Total households!!$150,000 to $199,999",Household Income and Benefits,"$150,000 to $199,999",DP03_0060
+"Estimate!!INCOME AND BENEFITS (IN 2020 INFLATION-ADJUSTED DOLLARS)!!Total households!!$200,000 or more",Household Income and Benefits,"$200,000 or more",DP03_0061
+Estimate!!Total!!Population for whom poverty status is determined,Poverty,Total Population: Poverty,S1701_C01_001
+BakerRipley Calculation,Poverty,Over 200% FPL,
+Estimate!!Total!!Population for whom poverty status is determined!!ALL INDIVIDUALS WITH INCOME BELOW THE FOLLOWING POVERTY RATIOS!!200 percent of poverty level,Poverty,Below 200 % FPL,S1701_C01_042
+BakerRipley Calculation,Poverty,100% - 200% FPL,
+Estimate!!Below poverty level!!Population for whom poverty status is determined,Poverty,Below Poverty Level,S1701_C02_001
+BakerRipley Calculation,Poverty,50% - 100% FPL,
+Estimate!!Total!!Population for whom poverty status is determined!!ALL INDIVIDUALS WITH INCOME BELOW THE FOLLOWING POVERTY RATIOS!!50 percent of poverty level,Poverty,Below 50% FPL,S1701_C01_038
+Estimate!!Total!!Population 16 years and over,Unemployment,Population 16 years and over,S2301_C01_001
+Estimate!!Unemployment rate!!Population 16 years and over,Unemployment,Unemployment Rate,S2301_C04_001
+BakerRipley Calculation,Unemployment,# Unemployed - ACS,
+Estimate!!EDUCATIONAL ATTAINMENT!!Population 25 years and over,Educational Attainment,Population 25 years old and over,DP02_0059
+Estimate!!EDUCATIONAL ATTAINMENT!!Population 25 years and over!!Less than 9th grade,Educational Attainment,Less than 9th grade,DP02_0060
+"Estimate!!EDUCATIONAL ATTAINMENT!!Population 25 years and over!!9th to 12th grade, no diploma",Educational Attainment,"9th to 12th grade, no diploma",DP02_0061
+BakerRipley Calculation,Educational Attainment,Subtotal - Less than highschool,
+Estimate!!EDUCATIONAL ATTAINMENT!!Population 25 years and over!!High school graduate (includes equivalency),Educational Attainment,High school graduate (includes equivalency),DP02_0062
+"Estimate!!EDUCATIONAL ATTAINMENT!!Population 25 years and over!!Some college, no degree",Educational Attainment,"Some college, no degree",DP02_0063
+BakerRipley Calculation,Educational Attainment,Subtotal - No college degree,
+Estimate!!EDUCATIONAL ATTAINMENT!!Population 25 years and over!!Associate's degree,Educational Attainment,Associate's degree,DP02_0064
+Estimate!!EDUCATIONAL ATTAINMENT!!Population 25 years and over!!Bachelor's degree,Educational Attainment,Bachelor's degree,DP02_0065
+Estimate!!EDUCATIONAL ATTAINMENT!!Population 25 years and over!!Graduate or professional degree,Educational Attainment,Graduate or professional degree,DP02_0066
+Estimate!!Total:,Opportunity Youth,Population 16-19 years old,B14005_001
+BakerRipley Calculation,Opportunity Youth,"Youth not in school, unemployed",
+BakerRipley Calculation,Opportunity Youth,"Youth not in school, unemployed, graduated high school",
+BakerRipley Calculation,Opportunity Youth,"Youth not in school, unemployed, did not graduate high school",
+Estimate!!Total:!!Male:!!Not enrolled in school:!!High school graduate (includes equivalency):!!Unemployed,Opportunity Youth,"Male not enrolled, high school graduate, unemployed",B14005_010
+Estimate!!Total:!!Male:!!Not enrolled in school:!!Not high school graduate:!!Unemployed,Opportunity Youth,"Male not enrolled, not high school graduate, unemployed",B14005_014
+Estimate!!Total:!!Female:!!Not enrolled in school:!!High school graduate (includes equivalency):!!Unemployed,Opportunity Youth,"Female not enrolled, high school graduate, unemployed",B14005_024
+Estimate!!Total:!!Female:!!Not enrolled in school:!!Not high school graduate:!!Unemployed,Opportunity Youth,"Female not enrolled, not high school, graduate unemployed",B14005_028
+Estimate!!PLACE OF BIRTH!!Total population,Place of Birth,Total Population: Birthplace,DP02_0088
+Estimate!!PLACE OF BIRTH!!Total population!!Native,Place of Birth,Native,DP02_0089
+Estimate!!PLACE OF BIRTH!!Total population!!Foreign born,Place of Birth,Foreign Born,DP02_0094
+Estimate!!U.S. CITIZENSHIP STATUS!!Foreign-born population!!Naturalized U.S. citizen,Place of Birth,"Foreign Born, US citizen",DP02_0096
+Estimate!!U.S. CITIZENSHIP STATUS!!Foreign-born population!!Not a U.S. citizen,Place of Birth,"Foreign Born, not US citizen",DP02_0097
+Estimate!!LANGUAGE SPOKEN AT HOME!!Population 5 years and over,Lanuage Spoken at Home,Total Population: Language Spoken (5 years and over),DP02_0112
+Estimate!!LANGUAGE SPOKEN AT HOME!!Population 5 years and over!!English only,Lanuage Spoken at Home,Primarily English,DP02_0113
+Estimate!!LANGUAGE SPOKEN AT HOME!!Population 5 years and over!!Spanish,Lanuage Spoken at Home,Spanish,DP02_0116
+BakerRipley Calculation,Lanuage Spoken at Home,All Other Languages,
+Estimate!!LANGUAGE SPOKEN AT HOME!!Population 5 years and over!!Other Indo-European languages,Lanuage Spoken at Home,Other Indo-European languages,DP02_0118
+Estimate!!LANGUAGE SPOKEN AT HOME!!Population 5 years and over!!Asian and Pacific Islander languages,Lanuage Spoken at Home,Asian and Pacific Islander languages,DP02_0120
+Estimate!!LANGUAGE SPOKEN AT HOME!!Population 5 years and over!!Other languages,Lanuage Spoken at Home,Other languages,DP02_0122
+Estimate!!LANGUAGE SPOKEN AT HOME!!Population 5 years and over!!Language other than English,English Fluency,Primarily non-English ,DP02_0114
+BakerRipley Calculation,English Fluency,English fluent but not primary,
+"Estimate!!LANGUAGE SPOKEN AT HOME!!Population 5 years and over!!Language other than English!!Speak English less than ""very well""",English Fluency,"English not fluent (Speak English less than ""very well"")",DP02_0115
+Estimate!!HEALTH INSURANCE COVERAGE!!Civilian noninstitutionalized population,Health Insurance,Total population: Health Insurance,DP03_0095
+Estimate!!HEALTH INSURANCE COVERAGE!!Civilian noninstitutionalized population!!With health insurance coverage,Health Insurance,With health insurance coverage,DP03_0096
+Estimate!!HEALTH INSURANCE COVERAGE!!Civilian noninstitutionalized population!!With health insurance coverage!!With private health insurance,Health Insurance,With private health insurance,DP03_0097
+Estimate!!HEALTH INSURANCE COVERAGE!!Civilian noninstitutionalized population!!With health insurance coverage!!With public coverage,Health Insurance,With public coverage,DP03_0098
+Estimate!!HEALTH INSURANCE COVERAGE!!Civilian noninstitutionalized population!!No health insurance coverage,Health Insurance,No health insurance coverage,DP03_0099
+Estimate!!HEALTH INSURANCE COVERAGE!!Civilian noninstitutionalized population under 19 years,Health Insurance,"Population under 19 years old, civilian noninstitutionalized",DP03_0100
+Estimate!!HEALTH INSURANCE COVERAGE!!Civilian noninstitutionalized population under 19 years!!No health insurance coverage,Health Insurance,No health insurance coverage,DP03_0101
+Estimate!!Total!!Total households,Digital Access,Total Households,S2801_C01_001
+Estimate!!Total!!Total households!!TYPES OF COMPUTER!!Has one or more types of computing devices:!!Desktop or laptop,Digital Access,Desktop or Laptop,S2801_C01_003
+BakerRipley Calculation,Digital Access,No Device or Smartphone Only,
+Estimate!!Total!!Total households!!TYPES OF COMPUTER!!Has one or more types of computing devices:!!Smartphone!!Smartphone with no other type of computing device,Digital Access,Smartphone Only,S2801_C01_006
+Estimate!!Total!!Total households!!TYPES OF COMPUTER!!No computer,Digital Access,No Device,S2801_C01_011
+BakerRipley Calculation,Digital Access,Internet Subscription (other than cellular data),
+BakerRipley Calculation,Digital Access,No Internet Subscription (includes those only having cellular data),
+Estimate!!Total!!Total households!!TYPE OF INTERNET SUBSCRIPTIONS!!With an Internet subscription:!!Broadband of any type!!Cellular data plan!!Cellular data plan with no other type of Internet subscription,Digital Access,Data Plan Only,S2801_C01_016
+Estimate!!Total!!Total households!!TYPE OF INTERNET SUBSCRIPTIONS!!Without an Internet subscription,Digital Access,No Internet,S2801_C01_019
+Estimate!!Total!!Total households!!TYPE OF INTERNET SUBSCRIPTIONS!!With an Internet subscription:,Digital Access,Having Any Internet Subscription (including Cell Data),S2801_C01_012
+Estimate!!HOUSEHOLDS BY TYPE!!Total households!!Average household size,Family Size,Average household size,DP02_0016
+Estimate!!HOUSEHOLDS BY TYPE!!Total households!!Average family size,Family Size,Average family size,DP02_0017
+"Estimate!!HOUSEHOLDS BY TYPE!!Total households!!Female householder, no spouse/partner present!!Householder living alone!!65 years and over",Family Size,Households with one or more people under 18 years old,DP02_0013
+Estimate!!Total:,Family Size,Total Occupied Housing Units,B11016_001
+Estimate!!Total:!!Nonfamily households:!!1-person household,Family Size,Nonfamily households: 1-person,B11016_010
+BakerRipley Calculation,Family Size,Total: 2-person households,
+Estimate!!Total:!!Family households:!!2-person household,Family Size,Family households: 2-person,B11016_003
+Estimate!!Total:!!Nonfamily households:!!2-person household,Family Size,Nonfamily households: 2-person,B11016_011
+BakerRipley Calculation,Family Size,Total: 3-person households,
+Estimate!!Total:!!Family households:!!3-person household,Family Size,Family households: 3-person,B11016_004
+Estimate!!Total:!!Nonfamily households:!!3-person household,Family Size,Nonfamily households: 3-person,B11016_012
+BakerRipley Calculation,Family Size,Total: 4-person households,
+Estimate!!Total:!!Family households:!!4-person household,Family Size,Family households: 4-person,B11016_005
+Estimate!!Total:!!Nonfamily households:!!4-person household,Family Size,Nonfamily households: 4-person,B11016_013
+BakerRipley Calculation,Family Size,Total: 5-person households,
+Estimate!!Total:!!Family households:!!5-person household,Family Size,Family households: 5-person,B11016_006
+Estimate!!Total:!!Nonfamily households:!!5-person household,Family Size,Nonfamily households: 5-person,B11016_014
+BakerRipley Calculation,Family Size,Total: 6-person households,
+Estimate!!Total:!!Family households:!!6-person household,Family Size,Family households: 6-person,B11016_007
+Estimate!!Total:!!Nonfamily households:!!6-person household,Family Size,Nonfamily households: 6-person,B11016_015
+BakerRipley Calculation,Family Size,Total: 7-or-more person households,
+Estimate!!Total:!!Family households:!!7-or-more person household,Family Size,Family households: 7-or-more person,B11016_008
+Estimate!!Total:!!Nonfamily households:!!7-or-more person household,Family Size,Nonfamily households: 7-or-more person,B11016_016
+Estimate!!HOUSING OCCUPANCY!!Total housing units,Housing Occupancy,Total Housing Units,DP04_0001
+Estimate!!HOUSING OCCUPANCY!!Total housing units!!Vacant housing units,Housing Occupancy,Unoccupied Housing Units,DP04_0003
+Estimate!!HOUSING TENURE!!Occupied housing units,Housing Occupancy,Occupied Housing Units,DP04_0045
+Estimate!!HOUSING TENURE!!Occupied housing units!!Owner-occupied,Housing Occupancy,Owner-occupied housing units,DP04_0046
+Estimate!!HOUSING TENURE!!Occupied housing units!!Renter-occupied,Housing Occupancy,Renter-occupied housing units,DP04_0047
+Estimate!!YEAR HOUSEHOLDER MOVED INTO UNIT!!Occupied housing units,Housing Tenure,Total Occupied housing units,DP04_0050
+BakerRipley Calculation,Housing Tenure,Moved in 2015 or later,
+Estimate!!YEAR HOUSEHOLDER MOVED INTO UNIT!!Occupied housing units!!Moved in 2019 or later,Housing Tenure,Moved in 2017 or later,DP04_0051
+Estimate!!YEAR HOUSEHOLDER MOVED INTO UNIT!!Occupied housing units!!Moved in 2015 to 2018,Housing Tenure,Moved in 2015-2016,DP04_0052
+Estimate!!YEAR HOUSEHOLDER MOVED INTO UNIT!!Occupied housing units!!Moved in 2010 to 2014,Housing Tenure,Moved in 2010 to 2014,DP04_0053
+Estimate!!YEAR HOUSEHOLDER MOVED INTO UNIT!!Occupied housing units!!Moved in 2000 to 2009,Housing Tenure,Moved in 2000 to 2009,DP04_0054
+BakerRipley Calculation,Housing Tenure,Moved in 1999 or earlier,
+Estimate!!YEAR HOUSEHOLDER MOVED INTO UNIT!!Occupied housing units!!Moved in 1990 to 1999,Housing Tenure,Moved in 1990-1999,DP04_0055
+Estimate!!YEAR HOUSEHOLDER MOVED INTO UNIT!!Occupied housing units!!Moved in 1989 and earlier,Housing Tenure,Moved in 1989 and earlier,DP04_0056
+Estimate!!VETERAN STATUS!!Civilian population 18 years and over,Veterans,Total population - Civilian 18 years and over,DP02_0069
+Estimate!!VETERAN STATUS!!Civilian population 18 years and over!!Civilian veterans,Veterans,Civilian Veterans,DP02_0070
